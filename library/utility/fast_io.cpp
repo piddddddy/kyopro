@@ -64,7 +64,9 @@ namespace fast_IO {
         if constexpr (std::is_same_v<T, const char*>) printf(t);
         if constexpr (std::is_same_v<T, std::string>) for (const auto& c : t) putchar_unlocked(c);
     }
-    template<std::size_t N> void put_raw(const char (&s)[N]) noexcept { printf(s); }
+    template<std::size_t N> void put_raw(const char (&s)[N]) noexcept {
+        for (std::size_t i = 0; i < N; i++) putchar_unlocked(s[i]);
+    }
     template<std::size_t N> void put_raw(const std::bitset<N>& bs) noexcept {
         for (std::size_t i = 0; i < N; i++) putchar_unlocked('0' + bs[N - 1 - i]);
     }
