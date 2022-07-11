@@ -53,6 +53,7 @@ namespace fast_IO {
     }
 
     template<typename T> void put_raw(const T& t) noexcept {
+        if constexpr (std::is_same_v<T, bool>) putchar_unlocked('0' + t);
         if constexpr (std::is_same_v<T, char>) putchar_unlocked(t);
         if constexpr (std::is_same_v<T, int>) printf("%d", t);
         if constexpr (std::is_same_v<T, unsigned>) printf("%u", t);
