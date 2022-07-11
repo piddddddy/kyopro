@@ -80,7 +80,7 @@ namespace fast_IO {
         put(std::forward<Args>(args)...);
     }
     template<typename...Args> void out(Args&&...args) noexcept {
-        put(args...);
+        put(std::forward<Args>(args)...);
         putchar_unlocked('\n');
         line_head = true;
     }
