@@ -25,7 +25,11 @@ namespace fast_IO {
             while ('0' <= c && c <= '9') n = n * 10 + (c - '0'), c = getchar_unlocked();
             if (c == '.') {
                 c = getchar_unlocked();
-                while ('0' <= c && c <= '9') n = n * 10 + (c - '0'), c = getchar_unlocked(), div *= 10;
+                while ('0' <= c && c <= '9') {
+                    n = n * 10 + (c - '0');
+                    c = getchar_unlocked();
+                    div *= 10;
+                }
             }
             return n / (double)div;
         }
@@ -63,7 +67,9 @@ namespace fast_IO {
         if constexpr (std::is_same_v<T, double>) printf("%.20lf", t);
         if constexpr (std::is_same_v<T, long double>) printf("%.20Lf", t);
         if constexpr (std::is_same_v<T, const char*>) printf(t);
-        if constexpr (std::is_same_v<T, std::string>) for (const auto& c : t) putchar_unlocked(c);
+        if constexpr (std::is_same_v<T, std::string>) {
+            for (const auto& c : t) putchar_unlocked(c);
+        }
     }
     template<std::size_t N> void put_raw(const char (&s)[N]) noexcept {
         for (std::size_t i = 0; i < N; i++) putchar_unlocked(s[i]);
